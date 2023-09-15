@@ -11,7 +11,7 @@ function validateUpperCase(text) {
 }
 
 function getComputerChoice() {
-    const options = ["Rock", "Paper", "Scissor"];
+    const options = ["Rock", "Paper", "Scissors"];
     const random = Math.floor(Math.random() * (3 + 0));
     let choice = "ERROR";
 
@@ -36,25 +36,36 @@ function getPlayerChoice() {
 
 function startRound(playerSelection, computerSelection) {
 
-    let message = "ERROR";
+    let value = "ERROR";
+
+    /*
+    0 = DRAW ("Draw. Try again.")
+    1 = PLAYER LOSE ("You Lose!, Paper beats Rock")
+                        "You Lose!, Scissors beats Paper"
+                            "You Lose!, Rock beats Scissors"
+    2 = COMPUTER LOSE ("You Win!, Rock beats Scissors)
+                            "You Win!, Paper beats Rock"
+                                "You Win!, Scissors beats Paper"
+
+    */ 
 
     if (playerSelection === computerSelection) {
-        message = 0//"Draw. Try again.";
+        value = 0;
     } else if (playerSelection === "Rock" && computerSelection === "Paper") {
-        message = 2//"You Lose!, Paper beats Rock";
-    } else if (playerSelection === "Rock" && computerSelection === "Scissor") {
-        message = 1//"You Win!, Rock beats Scissor";
-    } else if (playerSelection === "Paper" && computerSelection === "Scissor") {
-        message = 2//"You Lose!, Scissor beats Paper";
+        value = 1;
+    } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
+        value = 2;
+    } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
+        value = 11;
     } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        message = 1//"You Win!, Paper beats Rock";
-    } else if (playerSelection === "Scissor" && computerSelection === "Rock") {
-        message = 2//"You Lose!, Rock beats Scissor";
-    } else if (playerSelection === "Scissor" && computerSelection === "Paper") {
-        message = 1//"You Win!, Scissor beats Paper";
+        value = 22;
+    } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
+        value = 111;
+    } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
+        value = 222;
     }
 
-    return message;
+    return value;
 }
 
 
@@ -93,4 +104,36 @@ function game(){
     
 }
 
-game();
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+const showPlayerScore = document.getElementById("player");
+const newDiv = document.createElement("div");
+let playerScore = 0;
+let computerScore = 0;
+let countPlayer = 0;
+let countComputer = 0;
+
+rockButton.addEventListener("click", function(){
+    playerScore = startRound("Rock", getComputerChoice());
+    if (playerScore == 1 || playerScore  == 11 || playerScore == 111){
+        countPlayer += 1;
+    } else if (computerScore == 2 || computerScore == 22 || computerScore == 222){
+        countComputer += 1;
+    }
+
+    showPlayerScore.insertAdjacentHTML("afterbegin", countPlayer);
+});
+
+paperButton.addEventListener("click", function(){
+    newDiv.textContent = startRound("Paper", getComputerChoice());
+});
+
+scissorsButton.addEventListener("click", function(){
+    newDiv.textContent = startRound("Scissors", getComputerChoice());
+
+    
+});
+
+document.body.appendChild(newDiv);
+//game();
