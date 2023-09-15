@@ -107,33 +107,99 @@ function game(){
 const rockButton = document.getElementById("rock");
 const paperButton = document.getElementById("paper");
 const scissorsButton = document.getElementById("scissors");
-const showPlayerScore = document.getElementById("player");
+const showPlayerScore = document.getElementById("playerScore");
+const showComputerScore = document.getElementById("computerScore");
+const showDrawScore = document.getElementById("drawScore");
 const newDiv = document.createElement("div");
-let playerScore = 0;
-let computerScore = 0;
+let matchResult = 0;
 let countPlayer = 0;
 let countComputer = 0;
+let countDraw = 0;
+let message = "TEST";
 
 rockButton.addEventListener("click", function(){
-    playerScore = startRound("Rock", getComputerChoice());
-    if (playerScore == 1 || playerScore  == 11 || playerScore == 111){
+    matchResult = startRound("Rock", getComputerChoice());
+    if (matchResult == 1 || matchResult  == 11 || matchResult == 111){
         countPlayer += 1;
-    } else if (computerScore == 2 || computerScore == 22 || computerScore == 222){
+    } else if (matchResult == 2 || matchResult == 22 || matchResult == 222){
         countComputer += 1;
+    } else{
+        countDraw += 1;
     }
 
-    showPlayerScore.insertAdjacentHTML("afterbegin", countPlayer);
+    if(countPlayer == 5){
+        alert("YOU WIN!");
+        countPlayer = 0;
+        countComputer = 0;
+    } else if(countComputer == 5){
+        alert("YOU LOSE!");
+        countPlayer = 0;
+        countComputer = 0;
+        countDraw = 0;
+    }
+
+    showPlayerScore.textContent = ` ${countPlayer}`;
+    showComputerScore.textContent = ` ${countComputer}`;
+    showDrawScore.textContent = `${countDraw}`;
 });
 
 paperButton.addEventListener("click", function(){
-    newDiv.textContent = startRound("Paper", getComputerChoice());
+    matchResult = startRound("Paper", getComputerChoice());
+    if (matchResult == 1 || matchResult  == 11 || matchResult == 111){
+        countPlayer += 1;
+    } else if (matchResult == 2 || matchResult == 22 || matchResult == 222){
+        countComputer += 1;
+    } else{
+        countDraw += 1;
+    }
+
+    if(countPlayer == 5){
+        alert("YOU WIN!");
+        countPlayer = 0;
+        countComputer = 0;
+    } else if(countComputer == 5){
+        alert("YOU LOSE!");
+        countPlayer = 0;
+        countComputer = 0;
+        countDraw = 0;
+    }
+    
+
+    showPlayerScore.textContent = ` ${countPlayer}`;
+    showComputerScore.textContent = ` ${countComputer}`;
+    showDrawScore.textContent = `${countDraw}`;
 });
 
 scissorsButton.addEventListener("click", function(){
-    newDiv.textContent = startRound("Scissors", getComputerChoice());
+    matchResult = startRound("Scissors", getComputerChoice());
+    if (matchResult == 1 || matchResult  == 11 || matchResult == 111){
+        countPlayer += 1;
+    } else if (matchResult == 2 || matchResult == 22 || matchResult == 222){
+        countComputer += 1;
+    } else{
+        countDraw += 1;
+    }
 
-    
+    if(countPlayer == 5){
+        alert("YOU WIN!");
+        countPlayer = 0;
+        countComputer = 0;
+    } else if(countComputer == 5){
+        alert("YOU LOSE!");
+        countPlayer = 0;
+        countComputer = 0;
+        countDraw = 0;
+    }  
+
+    showPlayerScore.textContent = ` ${countPlayer}`;
+    showComputerScore.textContent = ` ${countComputer}`; 
+    showDrawScore.textContent = `${countDraw}`;   
 });
+
+if(countPlayer == 5){
+    console.log("YOU WIN!");
+}
+
 
 document.body.appendChild(newDiv);
 //game();

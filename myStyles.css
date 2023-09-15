@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.optionButton { 
+    width: 400px;
+    height: 400px;
+    border: 1px solid #eb0606;
+    cursor: pointer;
+    border: none;
+    background: red;
+    padding: 0;
+}
+
+.optionButton img{
+    width: 100%;
+    height: auto;
+}

@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="myStyles.css" type="text/css">
     <title>Document</title>
 </head>
 <body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <div>Score:</div>
-    <div id="score"><span id="player">Player:</span><span id="computer">Computer:</span></div>
-
+    <div class="container">
+        <div>
+            <button class="optionButton" id="rock">
+                <img class="optionButton"  src="img/theRock.jpg" alt="The Rock">
+            </button>
+            <button class="optionButton" id="paper">
+                <img src="img/paperMario.jpg" alt="Paper Mario Origami King">
+            </button>
+            <button class="optionButton" id="scissors"> 
+                <img src="img/scissorsGwen.jpg" alt="Gwen from League of Legends">
+            </button>
+        </div>
+        <div id="score"><span id="playerName">Player: <span id="playerScore">0</span></span>
+                        <span id="computer"> Computer: <span id="computerScore">0</span>
+                        <span id="draws"> Draws: <span id="drawScore">0</span></span></span>
+        </div>
+    </div>
+    
     <script src="myScript.js"></script>
 </body>
 </html>
