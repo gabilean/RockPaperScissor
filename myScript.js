@@ -38,17 +38,6 @@ function startRound(playerSelection, computerSelection) {
 
     let value = "ERROR";
 
-    /*
-    0 = DRAW ("Draw. Try again.")
-    1 = PLAYER LOSE ("You Lose!, Paper beats Rock")
-                        "You Lose!, Scissors beats Paper"
-                            "You Lose!, Rock beats Scissors"
-    2 = COMPUTER LOSE ("You Win!, Rock beats Scissors)
-                            "You Win!, Paper beats Rock"
-                                "You Win!, Scissors beats Paper"
-
-    */ 
-
     if (playerSelection === computerSelection) {
         value = 0;
     } else if (playerSelection === "Rock" && computerSelection === "Paper") {
@@ -56,18 +45,48 @@ function startRound(playerSelection, computerSelection) {
     } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
         value = 2;
     } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
-        value = 11;
+        value = 3;
     } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        value = 22;
+        value = 4;
     } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
-        value = 111;
+        value = 5;
     } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        value = 222;
+        value = 6;
     }
 
     return value;
 }
 
+function messageResult(value){
+    let message;
+
+    switch(value){
+        case 0:
+            message = "Draw. Try again.";
+            break;
+        case 1:
+            message = "You Win!, Rock beats Scissors";
+            break;
+        case 2:
+            message = "You Lose!, Paper beats Rock";
+            break;
+        case 3:
+            message = "You Win!, Paper beats Rock";
+            break;
+        case 4:
+            message = "You Lose!, Scissors beats Paper";
+            break;
+        case 5:
+            message = "You Win!, Scissors beats Paper";
+            break;
+        case 6:
+            message = "You Lose!, Rock beats Scissors";
+            break;
+    }
+
+    return message;
+
+}
 
 function game(){
     let playerScore = 0;
@@ -110,27 +129,31 @@ const scissorsButton = document.getElementById("scissors");
 const showPlayerScore = document.getElementById("playerScore");
 const showComputerScore = document.getElementById("computerScore");
 const showDrawScore = document.getElementById("drawScore");
+const showMessageResult = document.getElementById("score");
 const newDiv = document.createElement("div");
 let matchResult = 0;
 let countPlayer = 0;
 let countComputer = 0;
 let countDraw = 0;
-let message = "TEST";
 
 rockButton.addEventListener("click", function(){
     matchResult = startRound("Rock", getComputerChoice());
-    if (matchResult == 1 || matchResult  == 11 || matchResult == 111){
+    if (matchResult == 1 || matchResult  == 3 || matchResult == 5){
         countPlayer += 1;
-    } else if (matchResult == 2 || matchResult == 22 || matchResult == 222){
+    } else if (matchResult == 2 || matchResult == 4 || matchResult == 6){
         countComputer += 1;
     } else{
         countDraw += 1;
     }
 
+    newDiv.textContent = messageResult(matchResult);
+    showMessageResult.appendChild(newDiv);
+
     if(countPlayer == 5){
         alert("YOU WIN!");
         countPlayer = 0;
         countComputer = 0;
+        countDraw = 0;
     } else if(countComputer == 5){
         alert("YOU LOSE!");
         countPlayer = 0;
@@ -145,18 +168,22 @@ rockButton.addEventListener("click", function(){
 
 paperButton.addEventListener("click", function(){
     matchResult = startRound("Paper", getComputerChoice());
-    if (matchResult == 1 || matchResult  == 11 || matchResult == 111){
+    if (matchResult == 1 || matchResult  == 3 || matchResult == 5){
         countPlayer += 1;
-    } else if (matchResult == 2 || matchResult == 22 || matchResult == 222){
+    } else if (matchResult == 2 || matchResult == 4 || matchResult == 6){
         countComputer += 1;
     } else{
         countDraw += 1;
     }
 
+    newDiv.textContent = messageResult(matchResult);
+    showMessageResult.appendChild(newDiv);
+
     if(countPlayer == 5){
         alert("YOU WIN!");
         countPlayer = 0;
         countComputer = 0;
+        countDraw = 0;
     } else if(countComputer == 5){
         alert("YOU LOSE!");
         countPlayer = 0;
@@ -172,18 +199,22 @@ paperButton.addEventListener("click", function(){
 
 scissorsButton.addEventListener("click", function(){
     matchResult = startRound("Scissors", getComputerChoice());
-    if (matchResult == 1 || matchResult  == 11 || matchResult == 111){
+    if (matchResult == 1 || matchResult  == 3 || matchResult == 5){
         countPlayer += 1;
-    } else if (matchResult == 2 || matchResult == 22 || matchResult == 222){
+    } else if (matchResult == 2 || matchResult == 4 || matchResult == 6){
         countComputer += 1;
     } else{
         countDraw += 1;
     }
 
+    newDiv.textContent = messageResult(matchResult);
+    showMessageResult.appendChild(newDiv);
+
     if(countPlayer == 5){
         alert("YOU WIN!");
         countPlayer = 0;
         countComputer = 0;
+        countDraw = 0;
     } else if(countComputer == 5){
         alert("YOU LOSE!");
         countPlayer = 0;

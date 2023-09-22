@@ -7,16 +7,16 @@
 }
 
 .optionButton { 
-    width: 400px;
-    height: 400px;
+    width: 250px;
+    height: 250px;
     border: 1px solid #eb0606;
     cursor: pointer;
     border: none;
-    background: red;
+    background: none;
     padding: 0;
 }
 
 .optionButton img{
-    width: 100%;
-    height: auto;
+    width: 250px;
+    height: 250px;
 }
